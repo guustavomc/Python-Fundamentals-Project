@@ -64,8 +64,8 @@ class Book:
     def from_dict(cls, data):
         book = cls(data["title"], data["author"], data["pages"])
         book.id = data["id"]
-        book.id = data["price"]
-        book.id = data["edition"]
+        book._price = data["price"]
+        book._edition = data["edition"]
         return book
     
     def __str__(self):
