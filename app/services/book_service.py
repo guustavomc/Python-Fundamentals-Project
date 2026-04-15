@@ -41,7 +41,7 @@ def get_book(books):
     value = input("Title or author of the Book: ").strip().lower()
     results = [b for b in books if value in b.title.lower() or value in b.author.lower()]
     if not results:
-        print("No book located")
+        print("No book located.")
     else:
         print(f"\n{len(results)} match(es)")
         for book in results:
@@ -52,7 +52,7 @@ def update_book(books):
     book_id = input("ID of the Book: ").strip().lower()
     result = [b for b in books if book_id in b.id]
     if not result:
-        print("No book located")
+        print("No book located.")
         return
     
     print(f"Current book: {result}")
@@ -77,3 +77,30 @@ def update_book(books):
     save_books(books)
     print(f"Book updated: {result}")
 
+def delete_book(books):
+    print("\n---Delete Book---")
+    book_id = input("ID of the Book: ").strip().lower()
+    result = [b for b in books if book_id in b.id]
+    if not result:
+        print("No book located.")
+        return
+    
+    confirmation = input("Confirm if this is the correct book to be deleted? Y/N").strip().lower()
+
+    if confirmation == "y":
+        books.remove(result)
+        save_books(books)
+        print("Book Deleted.")
+    else:
+        "Book won't be deleted."
+
+def export_book_CSV(books):
+    if not books:
+        print("No Book to Export.")
+        return
+    with open(BOOKS_CSV, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["ID", "Title", "Author", "Pages", "Edition", "Prices"])
+        for book in books:
+            writer.writerow([book.id, book.title, book.author, book.pages, book.price, f"{book.price:.2f}"])
+    print(f"Books exported to CSV file: {BOOKS_CSV}")
