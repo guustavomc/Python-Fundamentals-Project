@@ -36,3 +36,44 @@ def register_book(books):
     print("Book Registered")
     print(book)
     
+def get_book(books):
+    print("\n---Get Book---")
+    value = input("Title or author of the Book: ").strip().lower()
+    results = [b for b in books if value in b.title.lower() or value in b.author.lower()]
+    if not results:
+        print("No book located")
+    else:
+        print(f"\n{len(results)} match(es)")
+        for book in results:
+            print(book)
+
+def update_book(books):
+    print("\n---Update Book---")
+    book_id = input("ID of the Book: ").strip().lower()
+    result = [b for b in books if book_id in b.id]
+    if not result:
+        print("No book located")
+        return
+    
+    print(f"Current book: {result}")
+
+    new_title = input(f"New title [{result.title}]: ").strip()
+    new_author = input(f"New Author [{result.author}]: ").strip()
+    new_pages = input(f"New pages [{result.pages}]: ").strip()
+    new_price = input(f"New price [{result.price:.2f}]: ").strip()
+    new_edition = input(f"New edition [{result.edition}]: ").strip()
+
+    if new_title:
+        result.title = new_title
+    if new_author:
+        result.author = new_author
+    if new_pages:
+        result.pages = int(new_pages)
+    if new_price:
+        result.price = float(new_price)
+    if new_edition:
+        result.edition = int(new_edition)
+
+    save_books(books)
+    print(f"Book updated: {result}")
+
