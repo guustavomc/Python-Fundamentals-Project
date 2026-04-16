@@ -12,7 +12,7 @@ BOOKS_CSV = os.path.join(BASE_DIR, "data", "books.csv")
 def load_books():
     with open(BOOKS_FILE, 'r', encoding="utf-8") as f:
         data = json.load(f)
-        return [book.from_dict(item) for item in data] 
+        return [Book.from_dict(item) for item in data] 
     
 def save_books(books):
     with open(BOOKS_FILE, 'w', encoding="utf-8") as f:
@@ -35,9 +35,18 @@ def register_book(books):
     save_books(books)
     print("Book Registered")
     print(book)
-    
-def get_book(books):
+
+def get_all_books(books):
     print("\n---Get Book---")
+    if not books:
+        print("No Book located.")
+        return
+    for book in books:
+        print(book)
+
+    
+def search_book_with_title_or_author(books):
+    print("\n---Get Book With Title or Author---")
     value = input("Title or author of the Book: ").strip().lower()
     results = [b for b in books if value in b.title.lower() or value in b.author.lower()]
     if not results:

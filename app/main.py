@@ -2,97 +2,108 @@ import json
 import csv
 import os
 
+from app.services.book_service import (load_books, register_book, 
+                                       get_all_books, search_book_with_title_or_author, 
+                                       update_book, delete_book, export_book_CSV)
+
+
+from app.services.customer_service import (delete_customer, export_customer_CSV, 
+                                           get_all_customers, get_customer_with_name_or_email, 
+                                           load_customers, register_customers, update_customers)
 from models.book import Book
 from models.customer import Customer
 
-def menu_livros():
+def book_menu():
     books = load_books()
     while True:
         print("\n" + "=" * 40)
-        print("         GERENCIAR LIVROS")
+        print("         MANAGE BOOKS")
         print("=" * 40)
-        print("1. Cadastrar livro")
-        print("2. Consultar livros")
-        print("3. Buscar livro")
-        print("4. Alterar livro")
-        print("5. Excluir livro")
-        print("6. Exportar para CSV")
-        print("0. Voltar")
+        print("1. Register Book")
+        print("2. Get Books")
+        print("3. Search Books")
+        print("4. Update Book")
+        print("5. Delete Book")
+        print("6. Export CSV")
+        print("0. Back")
         print("-" * 40)
-        opcao = input("Escolha: ").strip()
+        opcao = input("Choose: ").strip()
 
         books = load_books()  # recarrega para garantir dados atualizados
 
         if opcao == "1":
-            cadastrar_livro(books)
+            register_book(books)
         elif opcao == "2":
-            consultar_livros(books)
+            get_all_books(books)
         elif opcao == "3":
-            buscar_livro(books)
+            search_book_with_title_or_author(books)
         elif opcao == "4":
-            alterar_livro(books)
+            update_book(books)
         elif opcao == "5":
-            excluir_livro(books)
+            delete_book(books)
         elif opcao == "6":
-            exportar_livros_csv(books)
+            export_book_CSV(books)
         elif opcao == "0":
             break
         else:
-            print("Opção inválida.")
+            print("Invalid Option.")
 
-def menu_clientes():
+def customer_menu():
     customers = load_customers()
     while True:
         print("\n" + "=" * 40)
         print("        GERENCIAR CLIENTES")
         print("=" * 40)
-        print("1. Cadastrar cliente")
-        print("2. Consultar clientes")
-        print("3. Alterar cliente")
-        print("4. Excluir cliente")
-        print("5. Exportar para CSV")
-        print("0. Voltar")
+        print("1. Register Customer")
+        print("2. Get Customers")
+        print("3. Search Customer")
+        print("3. Update Customer")
+        print("4. Delete Customer")
+        print("5. Export CSV")
+        print("0. Back")
         print("-" * 40)
-        opcao = input("Escolha: ").strip()
+        opcao = input("Choose: ").strip()
 
         customers = load_customers()
 
         if opcao == "1":
-            cadastrar_cliente(customers)
+            register_customers(customers)
         elif opcao == "2":
-            consultar_clientes(customers)
+            get_all_customers(customers)
         elif opcao == "3":
-            alterar_cliente(customers)
+            get_customer_with_name_or_email(customers)
         elif opcao == "4":
-            excluir_cliente(customers)
+            update_customers(customers)
         elif opcao == "5":
-            exportar_clientes_csv(customers)
+            delete_customer(customers)
+        elif opcao == "6":
+            export_customer_CSV(customers)
         elif opcao == "0":
             break
         else:
-            print("Opção inválida.")
+            print("Invalid Option.")
 
 
-def menu_principal():
+def main_menu():
     while True:
         print("\n" + "=" * 40)
-        print("       SISTEMA DE LIVRARIA")
+        print("       LIBRARY SYSTEM")
         print("=" * 40)
-        print("1. Gerenciar Livros")
-        print("2. Gerenciar Clientes")
-        print("0. Sair")
+        print("1. Manage Books")
+        print("2. Manage Customers")
+        print("0. Quit")
         print("-" * 40)
-        opcao = input("Escolha: ").strip()
+        opcao = input("Choose: ").strip()
 
         if opcao == "1":
-            menu_livros()
+            book_menu()
         elif opcao == "2":
-            menu_clientes()
+            customer_menu()
         elif opcao == "0":
-            print("\nSistema encerrado. Até logo!")
+            print("\nBye!")
             break
         else:
-            print("Opção inválida.")
+            print("Invalid Option.")
 
 if __name__ == "__main__":
     if login():

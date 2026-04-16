@@ -29,7 +29,15 @@ def register_customers(customers):
     print("Customer Registered")
     print(customer)
 
-def get_customers(customers):
+def get_all_customers(customers):
+    print("\n---Get Customer---")
+    if not customers:
+        print("No Customer located.")
+        return
+    for customer in customers:
+        print(customer)
+
+def get_customer_with_name_or_email(customers):
     print("\n---Get Customer---")
     value = input("Name or Email of the customer: ").strip().lower
     results = [customer for customer in customers if value in customer.name.lower() or value in customer.email.lower()]
