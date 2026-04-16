@@ -64,7 +64,7 @@ def update_book(books):
         print("No book located.")
         return
     
-    print(f"Current book: {result}")
+    print(f"Current book: {result[0]}")
 
     new_title = input(f"New title [{result.title}]: ").strip()
     new_author = input(f"New Author [{result.author}]: ").strip()
@@ -97,7 +97,7 @@ def delete_book(books):
     confirmation = input("Confirm if this is the correct book to be deleted? Y/N").strip().lower()
 
     if confirmation == "y":
-        books.remove(result)
+        books.remove(result[0])
         save_books(books)
         print("Book Deleted.")
     else:
