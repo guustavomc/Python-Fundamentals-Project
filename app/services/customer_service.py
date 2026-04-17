@@ -85,7 +85,7 @@ def delete_customer(customers):
     confirmation = input("Confirm if this is the correct customer to be deleted? Y/N").strip().lower()
 
     if confirmation == "y":
-        customers.remove(result.next())
+        customers.remove(result[0])
         save_customers(customers)
         print("Customer Deleted.")
     else:
