@@ -103,5 +103,5 @@ def main_menu():
             print("Invalid Option.")
 
 if __name__ == "__main__":
-    if login():
-        main_menu()
+    #if login():
+    main_menu()
