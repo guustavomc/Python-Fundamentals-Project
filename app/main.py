@@ -10,6 +10,11 @@ from services.customer_service import (delete_customer, export_customer_CSV,
                                            get_all_customers, get_customer_with_name_or_email, 
                                            load_customers, register_customers, update_customers)
 
+VALID_USERS = {
+    "admin": "admin123",
+    "librarian": "library2024",
+}
+
 def book_menu():
     books = load_books()
     while True:
@@ -102,6 +107,22 @@ def main_menu():
         else:
             print("Invalid Option.")
 
+def login():
+    print("\n" + "=" * 40)
+    print("         LIBRARY SYSTEM - LOGIN")
+    print("=" * 40)
+    attempts = 3
+    while attempts > 0:
+        username = input("Username: ").strip()
+        password = input("Password: ").strip()
+        if VALID_USERS.get(username) == password:
+            print(f"\nWelcome, {username}!")
+            return True
+        attempts -= 1
+        print(f"Invalid credentials. {attempts} attempt(s) remaining.")
+    print("Access denied.")
+    return False
+
 if __name__ == "__main__":
-    #if login():
-    main_menu()
+    if login():
+        main_menu()

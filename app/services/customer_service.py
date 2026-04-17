@@ -4,6 +4,7 @@ import os
 
 from models.customer import Customer
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CUSTOMERS_FILE = os.path.join(BASE_DIR, "data", "customers.json")
 CUSTOMERS_CSV = os.path.join(BASE_DIR, "data", "customers.csv")
