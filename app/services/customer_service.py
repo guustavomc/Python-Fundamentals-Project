@@ -20,8 +20,8 @@ def save_customers(customers):
 def register_customers(customers):
     print("\n---Register Customer---")
     name = input("Name: ").strip()
-    email = input("Phone: ").strip()
-    phone = int(input("Pages: ").strip())
+    email = input("Email: ").strip()
+    phone = input("Phone: ").strip()
 
     customer = Customer(name, email, phone)
     customers.append(customer)
@@ -40,7 +40,7 @@ def get_all_customers(customers):
 def get_customer_with_name_or_email(customers):
     print("\n---Get Customer---")
     value = input("Name or Email of the customer: ").strip().lower
-    results = [customer for customer in customers if value in customer.name.lower() or value in customer.email.lower()]
+    results = [customer for customer in customers if value in customer.name or value in customer.email]
     if not results:
         print("No Customer Found.")
     else: 
@@ -56,11 +56,11 @@ def update_customers(customers):
         print("No customer located.")
         return
     
-    print(f"Current customer: {result}")
+    print(f"Current customer: {result.next()}")
 
-    new_name = input(f"New name [{result.name}]: ").strip()
-    new_email = input(f"New email [{result.email}]: ").strip()
-    new_phone = input(f"New phone [{result.phone}]: ").strip()
+    new_name = input(f"New name [{result.next().name}]: ").strip()
+    new_email = input(f"New email [{result.next().email}]: ").strip()
+    new_phone = input(f"New phone [{result.next().phone}]: ").strip()
     
 
     if new_name:
@@ -84,7 +84,7 @@ def delete_customer(customers):
     confirmation = input("Confirm if this is the correct customer to be deleted? Y/N").strip().lower()
 
     if confirmation == "y":
-        customers.remove(result)
+        customers.remove(result.next())
         save_customers(customers)
         print("Customer Deleted.")
     else:
