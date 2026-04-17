@@ -1,7 +1,7 @@
 import uuid
 
 class Customer:
-    def __init__(self, name, email, phone, customer_id: None):
+    def __init__(self, name, email, phone, customer_id= None):
         self.id = customer_id if customer_id else str(uuid.uuid4())[:8]
         self._name = name.strip().title()
         self._email = email.strip().title()

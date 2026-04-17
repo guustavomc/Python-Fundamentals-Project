@@ -2,16 +2,13 @@ import json
 import csv
 import os
 
-from app.services.book_service import (load_books, register_book, 
+from services.book_service import (load_books, register_book, 
                                        get_all_books, search_book_with_title_or_author, 
                                        update_book, delete_book, export_book_CSV)
 
-
-from app.services.customer_service import (delete_customer, export_customer_CSV, 
+from services.customer_service import (delete_customer, export_customer_CSV, 
                                            get_all_customers, get_customer_with_name_or_email, 
                                            load_customers, register_customers, update_customers)
-from models.book import Book
-from models.customer import Customer
 
 def book_menu():
     books = load_books()
@@ -57,9 +54,9 @@ def customer_menu():
         print("1. Register Customer")
         print("2. Get Customers")
         print("3. Search Customer")
-        print("3. Update Customer")
-        print("4. Delete Customer")
-        print("5. Export CSV")
+        print("4. Update Customer")
+        print("5. Delete Customer")
+        print("6. Export CSV")
         print("0. Back")
         print("-" * 40)
         opcao = input("Choose: ").strip()
@@ -107,4 +104,4 @@ def main_menu():
 
 if __name__ == "__main__":
     if login():
-        menu_principal()
+        main_menu()

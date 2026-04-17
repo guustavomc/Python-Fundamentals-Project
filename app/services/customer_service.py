@@ -39,8 +39,8 @@ def get_all_customers(customers):
 
 def get_customer_with_name_or_email(customers):
     print("\n---Get Customer---")
-    value = input("Name or Email of the customer: ").strip().lower
-    results = [customer for customer in customers if value in customer.name or value in customer.email]
+    value = input("Name or Email of the customer: ").strip().lower()
+    results = [customer for customer in customers if value in customer.name.lower() or value in customer.email.lower()]
     if not results:
         print("No Customer Found.")
     else: 
@@ -56,22 +56,23 @@ def update_customers(customers):
         print("No customer located.")
         return
     
-    print(f"Current customer: {result.next()}")
+    customer = result[0]
+    print(f"Current customer: {customer}")
 
-    new_name = input(f"New name [{result.next().name}]: ").strip()
-    new_email = input(f"New email [{result.next().email}]: ").strip()
-    new_phone = input(f"New phone [{result.next().phone}]: ").strip()
+    new_name = input(f"New name [{customer.name}]: ").strip()
+    new_email = input(f"New email [{customer.email}]: ").strip()
+    new_phone = input(f"New phone [{customer.phone}]: ").strip()
     
 
     if new_name:
-        result.name = new_name
+        customer.name = new_name
     if new_email:
-        result.email = new_email
+        customer.email = new_email
     if new_phone:
-        result.phone = new_phone
+        customer.phone = new_phone
 
     save_customers(customers)
-    print(f"Customer updated: {result}")
+    print(f"Customer updated: {customer}")
 
 def delete_customer(customers):
     print("\n---Delete Customer---")

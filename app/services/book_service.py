@@ -64,27 +64,28 @@ def update_book(books):
         print("No book located.")
         return
     
-    print(f"Current book: {result[0]}")
+    book = result[0]
+    print(f"Current book: {book}")
 
-    new_title = input(f"New title [{result.title}]: ").strip()
-    new_author = input(f"New Author [{result.author}]: ").strip()
-    new_pages = input(f"New pages [{result.pages}]: ").strip()
-    new_price = input(f"New price [{result.price:.2f}]: ").strip()
-    new_edition = input(f"New edition [{result.edition}]: ").strip()
+    new_title = input(f"New title [{book.title}]: ").strip()
+    new_author = input(f"New Author [{book.author}]: ").strip()
+    new_pages = input(f"New pages [{book.pages}]: ").strip()
+    new_price = input(f"New price [{book.price:.2f}]: ").strip()
+    new_edition = input(f"New edition [{book.edition}]: ").strip()
 
     if new_title:
-        result.title = new_title
+        book.title = new_title
     if new_author:
-        result.author = new_author
+        book.author = new_author
     if new_pages:
-        result.pages = int(new_pages)
+        book.pages = int(new_pages)
     if new_price:
-        result.price = float(new_price)
+        book.price = float(new_price)
     if new_edition:
-        result.edition = int(new_edition)
+        book.edition = int(new_edition)
 
     save_books(books)
-    print(f"Book updated: {result}")
+    print(f"Book updated: {book}")
 
 def delete_book(books):
     print("\n---Delete Book---")
@@ -111,5 +112,5 @@ def export_book_CSV(books):
         writer = csv.writer(f)
         writer.writerow(["ID", "Title", "Author", "Pages", "Edition", "Prices"])
         for book in books:
-            writer.writerow([book.id, book.title, book.author, book.pages, book.price, f"{book.price:.2f}"])
+            writer.writerow([book.id, book.title, book.author, book.pages, book.edition, f"{book.price:.2f}"])
     print(f"Books exported to CSV file: {BOOKS_CSV}")
