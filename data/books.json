@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "c95c69e2",
+    "title": "The Lord Of The Rings Fellowship Of The Ring",
+    "author": "J R R Tolkien",
+    "pages": 1000,
+    "price": 40.0,
+    "edition": 1
+  }
+]
